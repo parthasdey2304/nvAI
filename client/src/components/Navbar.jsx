@@ -1,3 +1,5 @@
+import 'remixicon/fonts/remixicon.css'
+
 function Navbar() {
   return (
     <div className="w-full h-[70px] md:h-[80px] bg-blue-600 flex justify-between p-4">
@@ -12,6 +14,10 @@ function Navbar() {
                 <li className="text-white text-xl font-semibold px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded"><a href="https://github.com/parthasdey2304/nvAI.git">GitHub</a></li>
                 <li className="text-white text-xl font-semibold px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded"><a href="/about">About</a></li>
             </ul>
+        </div>
+
+        <div className="md:hidden">
+            <i class="ri-menu-3-line text-white font-bold text-3xl hover:bg-white/30 duration-300 hover:duration-300 p-1 rounded"></i>
         </div>
     </div>
   )
