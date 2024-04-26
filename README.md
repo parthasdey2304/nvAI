@@ -1,5 +1,5 @@
 <h1 align="center">nvAI</h1>
-My hackathon project that uses `Machine Learning` to detect Brain Tumours.
+My hackathon project that uses Machine Learning, Computer Vision, Segmentation to detect Brain Tumours.
 
 ## Parts of the project
 ### Client
