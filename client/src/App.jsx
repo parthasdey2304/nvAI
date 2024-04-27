@@ -12,7 +12,7 @@ function App() {
       {/* hero section */}
       <div className="w-full h-[1500px] bg-gray-900 flex-col justify-center">
           <div className="w-full h-[300px] flex justify-center items-center font-['Merriweather'] pt-52 px-2 md:px-0">
-            <span className='text-5xl text-white text-center md:leading-relaxed font-semibold'>Revolutionizing Brain Tumour <br /> Detection</span>
+            <span className='text-4xl md:text-5xl text-white text-center md:leading-relaxed font-semibold'>Revolutionizing Brain Tumour <br /> Detection</span>
           </div>
 
           <div className="w-full h-[50px] flex justify-center items-center font-['Poppins'] mt-12 md:mt-4 md:pt-6">
