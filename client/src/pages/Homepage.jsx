@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 // import Hamburger from './components/Hamburger'
 
-function App() {
+function Homepage() {
   return (
     <>
       <Navbar />
@@ -45,4 +45,4 @@ function App() {
   )
 }
 
-export default App
+export default Homepage
