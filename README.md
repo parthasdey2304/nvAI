@@ -8,7 +8,7 @@
 🖥️ On the client side, we have a React application running. The frontend interacts with a Flask API provided in the server part.
 
 #Server
-🖥️ On the server side, we have a Linode instance running a Flask API. This API accepts an image of the brain tumor MRI and returns a JSON response in the following format:
+-🖥️ On the server side, we have a Linode instance running a Flask API. This API accepts an image of the brain tumor MRI and returns a JSON response in the following format:
 
 json
 Copy code
