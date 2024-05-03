@@ -59,7 +59,7 @@ function Chatbot() {
               />
             </svg>
           </button>
-          <div className="chatbot-messages w-[300px] h-[400px] overflow-y-auto">
+          <div className="chatbot-messages w-[80%] md:w-[300px] h-[400px] overflow-y-auto">
             {messages.map((message, index) => (
               <div
                 key={index}
