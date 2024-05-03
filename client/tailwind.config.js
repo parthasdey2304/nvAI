@@ -4,7 +4,9 @@ const flowbite = require("flowbite-react/tailwind");
 module.exports = {
   content: ["./src/**/*.{html,js,htm,jsx}", "./node_modules/flowbite/**/*.js", flowbite.content()],
   theme: {
-    extend: {},
+    extend: {
+      
+    },
   },
   plugins: [
     require('flowbite/plugin'),
