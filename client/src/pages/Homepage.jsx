@@ -100,6 +100,8 @@ function Homepage() {
               button_color="transparent"
             />
 
+              <div className="w-60 h-60 skew-x-12 rounded-full bg-white/30 absolute bottom-0 left-[30%] -z-5 hidden"></div>
+
             <Pricing_Cards
               tier="BASIC"
               info="Enhanced Features for accurate brain tumour detection."
@@ -134,19 +136,33 @@ function Homepage() {
         </div>
       </div>
       
-      {/* Pricing Section */}
-      <div className="w-full h-[2200px] min-[1110px]:h-[900px] md:h-[1600px] bg-gray-900 flex-col justify-center relative pt-20">
+      {/* Gyan ki baat Section */}
+      <div className="w-full h-[600px] bg-gray-900 flex-col space-y-10 justify-center relative pt-20">
         <div className="w-full h-[30px] flex justify-center items-center text-center text-white text-4xl font-semibold font-['Jersey'] mt-4 relative">
           <div className="w-60 h-60 -skew-x-12 rounded-full bg-white/30 absolute top-4 right-[25%] -z-1"></div>
-          <span>Choose Your Plan</span>
+          
+          <span>Advance MRI Image Analysis</span>
         </div>
 
         <div className="w-full h-[30px] flex justify-center items-center text-center text-white font-['Poppins'] mt-14">
-          Select the plan that suits your brain tumour detection needs.
+
+          <div className="w-[1000px] h-10">
+            <span className="text-center">
+              Our Project utilizes state-of-the-art Artificial Intelligence Algorithms to analyse MRI scans, provide you with proper segmentation of brain tumours and generate detailed reports. With a Team of experts of both medical imaging and AI, we are able to provide you with accurate results.
+            </span>
+          </div>
         </div>
 
-        <Chatbot />
+        <div className="w-full h-32 pt-20 flex justify-center">
+          <button className="w-[300px] text-white bg-white/30 text-center border py-2 rounded">Discover Our Technology</button>
+        </div>
+
       </div>
+
+      {/* Commonly Asked Questions Section */}
+      <div className="w-full h-[700px] bg-black"></div>
+      
+      <Chatbot />
 
       <Footer />
     </div>
