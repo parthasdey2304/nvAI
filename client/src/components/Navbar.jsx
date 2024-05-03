@@ -2,7 +2,7 @@ import 'remixicon/fonts/remixicon.css';
 
 function Navbar() {
   return (
-    <div className="w-full h-[70px] md:h-[80px] bg-gray-900 flex justify-between p-4">
+    <div className="w-full fixed z-50 h-[70px] md:h-[80px] bg-transparent backdrop-blur-xl flex justify-between p-4">
         <div className="md:px-4">
             <a href='/' className="text-white text-4xl md:text-5xl font-semibold font-['Jersey']">nvAI</a>
         </div>
