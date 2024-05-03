@@ -59,13 +59,15 @@ function Chatbot() {
               />
             </svg>
           </button>
-          <div className="chatbot-messages w-[80%] md:w-[300px] h-[400px] overflow-y-auto">
+          <h2 className="text-lg font-semibold text-center mb-2">AI Chat</h2>
+          <div className="chatbot-messages w-[250px] md:w-[300px] h-[400px] overflow-y-auto space-y-2">
             {messages.map((message, index) => (
               <div
                 key={index}
                 className={`message p-2 rounded-lg ${
-                  message.sender === 'bot' ? 'bg-blue-100 text-blue-900 ml-auto' : 'bg-gray-100 text-gray-900 mr-auto'
+                  message.sender === 'bot' ? 'bg-blue-100 text-blue-900 ml-4' : 'bg-gray-100 text-gray-900 mr-4'
                 }`}
+                style={{ maxWidth: '80%', textAlign: message.sender === 'bot' ? 'left' : 'right' }}
               >
                 {message.text}
               </div>
