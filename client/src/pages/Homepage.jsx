@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Key_features_Cards from "../components/Key_features_Cards";
 import Pricing_Cards from "../components/Pricing_Cards";
+import Chatbot from "../components/ChatBot";
 
 function Homepage() {
   return (
@@ -143,7 +144,8 @@ function Homepage() {
         <div className="w-full h-[30px] flex justify-center items-center text-center text-white font-['Poppins'] mt-14">
           Select the plan that suits your brain tumour detection needs.
         </div>
-        
+
+        <Chatbot />
       </div>
 
       <Footer />
