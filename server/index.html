@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload Form</title>
+    <style>
+        .image-container {
+            border: 2px solid #ddd; /* Add a gray border */
+            padding: 20px; /* Add some padding */
+            margin-top: 20px; /* Add some space at the top */
+            max-width: 500px; /* Limit the maximum width */
+            display: none; /* Initially hide the container */
+        }
+
+        .image-container img {
+            max-width: 100%; /* Make sure the image doesn't exceed container width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload Image</h2>
+    <form id="uploadForm" action="http://127.0.0.1:5000/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" accept="image/*">
+        <button type="submit">Upload</button>
+	<p>NEW</p>
+    </form>
+
+    <!-- Container to display uploaded image -->
+    <div id="imageContainer" class="image-container">
+        <img id="uploadedImage" src="" alt="Uploaded Image">
+    </div>
+
+    <!-- JavaScript to display uploaded image after upload -->
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            var form = event.target;
+            var formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                var url = URL.createObjectURL(blob);
+                document.getElementById('uploadedImage').src = url;
+                document.getElementById('imageContainer').style.display = 'block'; // Display the container
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+

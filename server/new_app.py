@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, send_file
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ def upload_file():
     
     # Check if the file is empty
     if file.filename == '':
-        return "Empty file", 404
+        return "Empty file", 400
     
     # Check if the file is an allowed image format
     allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
