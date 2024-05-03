@@ -1,4 +1,4 @@
-import 'remixicon/fonts/remixicon.css';
+
 
 function Navbar() {
   return (

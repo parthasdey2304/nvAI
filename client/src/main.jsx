@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-// import Routes from './Routes.jsx'
-import Homepage from './pages/Homepage'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import 'remixicon/fonts/remixicon.css';
+import Homepage from './pages/Homepage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

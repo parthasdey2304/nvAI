@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Key_features_Cards from '../components/Key_features_Cards';
+import Pricing_Cards from '../components/Pricing_Cards';
 
 function Homepage() {
   return (
@@ -55,17 +56,33 @@ function Homepage() {
 
           <div className="w-full md:h-[600px] flex justify-center mt-10">
             <div className="w-[1200px] h-full flex flex-wrap justify-center gap-[30px] px-2 md:px-0">
-              <div className="w-[350px] h-full bg-white/30 rounded-md flex-col space-y-5 p-5 font-['Poppins']">
-                <div className="text-white font-medium text-2xl">FREE</div>
-                <div className="text-white text-sm">Get started with basic brain tumour detection.</div>
-                <div className="text-white pt-10">
-                  <span className="font-semibold text-5xl">$0</span>
-                  <span>/month</span>
-                </div>
-                <div>
-                  <span></span>
-                </div>
-              </div>
+
+              <Pricing_Cards 
+                tier="FREE" 
+                info="Get started with basic brain tumour detection." 
+                price="0" 
+                tier_features={["Access to Basic MRI Scan Analysis.", "Limited report generation", "Email Support"]} 
+                button_content="Continue For Free" 
+                button_color="transparent" 
+              />
+              
+              <Pricing_Cards 
+                tier="BASIC" 
+                info="Enhanced Features for accurate brain tumour detection." 
+                price="29" 
+                tier_features={["All features of Free plan", "Advance MRI scan analysis", "Detailed report generation", "24/7 email and phone support", "Monthly Webinar Access"]} 
+                button_content="Try the Basic Plan" 
+                button_color="transparent" 
+              />
+              
+              <Pricing_Cards 
+                tier="PRO" 
+                info="Comprehensive solution for advance brain tumour analysis." 
+                price="59" 
+                tier_features={["All features of Free plan", "AI Powered MRI analysis", "Customizable report templates", "AI assistant for personal doubts", "One on One doctor consultation", "Access to research studies"]} 
+                button_content="Try the Pro Plan" 
+                button_color="transparent" 
+              />
               
             </div>
           </div>
