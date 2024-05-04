@@ -29,12 +29,26 @@
 
 
 ## Technologies Used
-🔧 Python   
+<!--🔧 Python   
 🔧 TensorFlow   
 🔧 Keras    
 🔧 Flask    
 🔧 React    
-🔧 HTML/CSS
+🔧 HTML/CSS-->
+
+<div styl="display: flex">
+    <img src="https://skillicons.dev/icons?i=html" alt="">
+    <img src="https://skillicons.dev/icons?i=css" alt="">
+    <img src="https://skillicons.dev/icons?i=javascript" alt="">
+    <img src="https://skillicons.dev/icons?i=python" alt="">
+    <img src="https://skillicons.dev/icons?i=nodejs" alt="">
+    <img src="https://skillicons.dev/icons?i=react" alt="">
+    <img src="https://skillicons.dev/icons?i=express" alt="">
+    <img src="https://skillicons.dev/icons?i=tensorflow" alt="">
+    <img src="https://skillicons.dev/icons?i=flask" alt="">
+    <img src="https://skillicons.dev/icons?i=mongodb" alt="">
+</div>
+
 
 ## Installation
 
