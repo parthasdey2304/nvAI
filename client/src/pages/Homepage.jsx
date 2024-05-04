@@ -29,7 +29,7 @@ function Homepage() {
         <div className="w-full h-[100px] flex justify-center items-center font-['Popping'] pt-10 relative">
           <a
             href="#key_features"
-            className="text-black text-xl font-semibold px-4 py-3 bg-white hover:bg-blue-600 hover:text-white duration-300 hover:duration-300 rounded-lg font-['Poppins']"
+            className="text-black text-xl font-medium px-6 py-3 bg-white hover:bg-blue-600 hover:text-white duration-300 hover:duration-300 rounded-lg font-['Poppins']"
           >
             Learn More
           </a>
@@ -90,6 +90,7 @@ function Homepage() {
             <Pricing_Cards
               tier="FREE"
               info="Get started with basic brain tumour detection."
+              currency="$"
               price="0"
               tier_features={[
                 "Access to Basic MRI Scan Analysis.",
@@ -97,7 +98,7 @@ function Homepage() {
                 "Email Support",
               ]}
               button_content="Continue For Free"
-              button_color="transparent"
+              // button_color="transparent"
             />
 
               <div className="w-60 h-60 skew-x-12 rounded-full bg-white/30 absolute bottom-0 left-[30%] -z-5 hidden"></div>
@@ -105,6 +106,7 @@ function Homepage() {
             <Pricing_Cards
               tier="BASIC"
               info="Enhanced Features for accurate brain tumour detection."
+              currency="$"
               price="29"
               tier_features={[
                 "All features of Free plan",
@@ -114,12 +116,13 @@ function Homepage() {
                 "Monthly Webinar Access",
               ]}
               button_content="Try the Basic Plan"
-              button_color="transparent"
+              // button_color="transparent"
             />
 
             <Pricing_Cards
               tier="PRO"
               info="Comprehensive solution for advance brain tumour analysis."
+              currency="$"
               price="59"
               tier_features={[
                 "All features of Free plan",
@@ -130,13 +133,15 @@ function Homepage() {
                 "Access to research studies",
               ]}
               button_content="Try the Pro Plan"
-              button_color="transparent"
+              // button_color="transparent"
             />
+
+            {/* <Pricing_Cards /> */}
           </div>
         </div>
       </div>
       
-      {/* Gyan ki baat Section */}
+      {/* Gyan ki baat Section
       <div className="w-full h-[600px] bg-gray-900 flex-col space-y-10 justify-center relative pt-20">
         <div className="w-full h-[30px] flex justify-center items-center text-center text-white text-4xl font-semibold font-['Jersey'] mt-4 relative">
           <div className="w-60 h-60 -skew-x-12 rounded-full bg-white/30 absolute top-4 right-[25%] -z-1"></div>
@@ -157,10 +162,38 @@ function Homepage() {
           <button className="w-[300px] text-white bg-white/30 text-center border py-2 rounded">Discover Our Technology</button>
         </div>
 
+      </div> */}
+
+      {/* This section is about the Gyan ki baate*/}
+      <div className="w-full h-[700px] md:h-[600px] bg-gray-900 flex justify-center pt-32">
+        <div className="w-full h-full flex-col text-center justify-center items-center">
+          <div className="w-full h-[30px] flex-col space-y-10 justify-center items-center text-center text-white mt-4 relative">
+            <p className="text-4xl font-['Jersey'] font-semibold ">Advance MRI Image Analysis</p>
+
+            <div className="w-full flex justify-center items-center px-4 pt-5">
+              <p className="text-center text-xl w-[1000px] font-['Poppins'] font-light">
+                Our Project utilizes state-of-the-art Artificial Intelligence Algorithms to analyse MRI scans, provide you with proper segmentation of brain tumours and generate detailed reports. With a Team of experts of both medical imaging and AI, we are able to provide you with accurate results.
+              </p>
+            </div>
+
+            <div className="w-full flex justify-center items-center pt-2">
+                <button className="w-[300px] pb-3 text-black hover:text-white text-xl font-medium bg-white hover:bg-blue-600 text-center duration-300 hover:duration-300 py-2 rounded-lg">Discover our Technology</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Commonly Asked Questions Section */}
-      <div className="w-full h-[700px] bg-black"></div>
+      <div className="w-full h-[700px] flex items-center justify-center p-4">
+        <div className="w-[1200px] h-[650px] bg-white/30 flex-col md:flex space-x-0 md:space-x-2 px-2 py-10 rounded-md">
+          <div className="w-full md:w-[35%] h-auto md:h-[650px] flex-col space-y-2 p-4">
+            <div className="text-white flex justify-center md:justify-start text-center md:text-left font-['Poppins']">FAQ</div>
+            <div className="text-white flex justify-center md:justify-start text-center md:text-left text-4xl font-['Jersey'] font-semibold ">Common Questions</div>
+            <div className="text-white flex justify-center md:justify-start text-center md:text-left font-['Poppins'] pt-10">Here are some of the most common questions that we get.</div>
+          </div>
+          <div className="w-full md:w-[65%] h-full bg-green-600 md:bg-blue-600"></div>
+        </div>
+      </div>
       
       <Chatbot />
 
