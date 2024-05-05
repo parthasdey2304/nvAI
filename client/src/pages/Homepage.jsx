@@ -11,7 +11,7 @@ function Homepage() {
       {/* <Hamburger /> */}
 
       {/* Hero Section and Key Features */}
-      <div className="w-full h-[2200px] md:h-[1550px] bg-gray-900 flex-col justify-center relative pt-10">
+      <div className="w-full h-[2200px] md:h-[1700px] bg-gray-900 flex-col justify-center relative pt-20 md:pt-52">
         <div className="w-52 h-52 rounded-full bg-white/30 absolute duration-500 skew-x-12 md:-skew-x-12 top-[5%] md:top-[10%] left-[21%] -z-1"></div>
 
         <div className="w-full h-[300px] flex justify-center items-center font-['Merriweather'] pt-52 px-2 md:px-0">
@@ -184,14 +184,14 @@ function Homepage() {
       </div>
 
       {/* Commonly Asked Questions Section */}
-      <div className="w-full h-[700px] flex items-center justify-center p-4">
-        <div className="w-[1200px] h-[650px] bg-white/30 flex-col md:flex space-x-0 md:space-x-2 px-2 py-10 rounded-md">
+      <div className="w-full h-[900px] md:h-[700px] flex items-center justify-center p-4">
+        <div className="w-[1200px] h-[950px] md:h-[650px] bg-white/30 flex-col md:flex space-x-0 md:space-x-2 px-2 py-10 rounded-md">
           <div className="w-full md:w-[35%] h-auto md:h-[650px] flex-col space-y-2 p-4">
             <div className="text-white flex justify-center md:justify-start text-center md:text-left font-['Poppins']">FAQ</div>
             <div className="text-white flex justify-center md:justify-start text-center md:text-left text-4xl font-['Jersey'] font-semibold ">Common Questions</div>
             <div className="text-white flex justify-center md:justify-start text-center md:text-left font-['Poppins'] pt-10">Here are some of the most common questions that we get.</div>
           </div>
-          <div className="w-full md:w-[65%] h-full bg-green-600 md:bg-blue-600"></div>
+          <div className="w-full md:w-[65%] h-[700px] md:h-full bg-green-600 md:bg-blue-600"></div>
         </div>
       </div>
       

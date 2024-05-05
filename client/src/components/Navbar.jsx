@@ -9,7 +9,7 @@ function Navbar() {
         </div>
 
         <div className="hidden md:block pt-2">
-            <ul className="flex justify-center">
+            <ul className="flex justify-center pl-20">
                 <li className="text-white text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins']"><a href="/">Home</a></li>
                 <li className="text-white text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins']"><a href="/detection">Detection</a></li>
                 <li className="text-white text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins']"><a href="https://github.com/parthasdey2304/nvAI.git">GitHub</a></li>
