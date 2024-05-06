@@ -5,25 +5,37 @@ import y1 from '../assets/brain_sample_images/marked_images/y1.jpg';
 import y2 from '../assets/brain_sample_images/marked_images/y2.jpg';
 import n1 from '../assets/brain_sample_images/marked_images/n1.jpg';
 import n2 from '../assets/brain_sample_images/marked_images/n2.jpg';
+import my1 from '../assets/brain_sample_images/only_images/my1.jpg';
+import my2 from '../assets/brain_sample_images/only_images/my2.jpg';
+import mn1 from '../assets/brain_sample_images/only_images/mn1.jpg';
+import mn2 from '../assets/brain_sample_images/only_images/mn2.jpg';
+
 
 function Detection() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [tumourFound, setTumourFound] = useState(false);
+  const map = {};
+
+  map['y1'] = my1;
+  map['y2'] = my2;
+  map['n1'] = mn1;
+  map['n2'] = mn2;
 
   const handleImageSelect = (image) => {
-    setSelectedImage(image);
+    setSelectedImage(image); // Remove the curly braces from around the image variable
     // Simulate analysis effect
     setTimeout(() => {
       setTumourFound(true);
     }, 2000);
   };
+  
 
   return (
     <div>
       <Navbar />
 
-      <div className="w-full h-[1500px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-52">
-        <h1 className="text-5xl text-center font-['Jersey'] text-white font-bold mb-4">Brain Tumour Detector🧠</h1>
+      <div className="w-full h-[1500px] md:h-[2000px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64">
+        <h1 className="text-5xl text-center font-['Merriweather'] text-white font-bold mb-4">Brain Tumour Detector🧠</h1>
 
         <div className="w-full flex justify-center items-center text-center py-10">
           <div className="flex items-center justify-center w-[500px]">
@@ -42,69 +54,10 @@ function Detection() {
         
         <h1 className="text-xl md:text-2xl text-center font-['Poppins'] text-white font-medium mb-10">Or try with sample data</h1>
 
-        {/* <div>
-          <div className="w-[1100px] mx-auto justify-center space-x-3 grid grid-cols-2 gap-4 mt-8">
-            <div className="w-[540px] h-[650px] bg-white/30 rounded-lg p-10">
-              <h2 className="text-xl text-center text-white font-['Poppins'] font-semibold mt-2">Select Sample Image</h2>
-              <div className="w-full h-[450px] flex flex-wrap gap-x-10 gap-y-4 pl-1 mt-20">
-                <img
-                  src={ y1 }
-                  alt="Sample Image 1"
-                  className="w-[200px] h-[200px] object-cover active:border-8 active:border-white rounded-lg duration-300 hover:duration-300 cursor-pointer mr-2 mb-2"
-                  onClick={() => handleImageSelect('sample_image_1.jpg')}
-                />
-                <img
-                  src={ y2 }
-                  alt="Sample Image 1"
-                  className="w-[200px] h-[200px] object-cover active:border-8 active:border-white rounded-lg duration-300 hover:duration-300 cursor-pointer mr-2 mb-2"
-                  onClick={() => handleImageSelect('sample_image_1.jpg')}
-                />
-                <img
-                  src={ n1 }
-                  alt="Sample Image 1"
-                  className="w-[200px] h-[200px] object-cover active:border-8 active:border-white rounded-lg duration-300 hover:duration-300 cursor-pointer mr-2 mb-2"
-                  onClick={() => handleImageSelect('sample_image_1.jpg')}
-                />
-                <img
-                  src={ n2 }
-                  alt="Sample Image 1"
-                  className="w-[200px] h-[200px] object-cover active:border-8 active:border-white rounded-lg duration-300 hover:duration-300 cursor-pointer mr-2 mb-2"
-                  onClick={() => handleImageSelect('sample_image_1.jpg')}
-                />
-                
-              </div>
-            </div>
-            <div className="w-[440px] h-[650px] bg-white/30 rounded-lg p-4">
-              {selectedImage && (
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">Selected Image:</h2>
-                  <img
-                    src={selectedImage}
-                    alt="Selected Image"
-                    className="mb-4"
-                  />
-                  {tumourFound ? (
-                    <div>
-                      <img
-                        src="tumour_image_with_boxes.jpg" // Replace with the image with red boxes around tumours URL
-                        alt="Tumour Image"
-                        className="mb-4"
-                      />
-                      <p className="text-lg font-semibold text-red-600">Brain Tumour Found</p>
-                    </div>
-                  ) : (
-                    <p className="text-lg font-semibold">Analyzing...</p>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-
-        </div> */}
-
+    
         <div className="w-full h-[400px] md:h-[200px] flex justify-center items-center">
           <div className="w-[700px] h-full flex-col">
-            <div className="w-full flex flex-wrap bg-blue-600 justify-center space-x-2 md:justify-between px-2">
+            <div className="w-full flex flex-wrap  justify-center space-x-2 md:justify-between px-2">
 
               <div onClick={() => { handleImageSelect({ y1 }) }} className="w-[200px] h-[240px] bg-white/30 my-2 flex-col rounded-lg hover:scale-110 duration-300 hover:duration-300">
                 <div className="w-full h-[190px] flex justify-center p-2">
@@ -129,29 +82,35 @@ function Detection() {
 
             </div>
 
-            <div className='w-full h-[300px] bg-red-600'>
-            {selectedImage && (
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">Selected Image:</h2>
-                  <img
-                    src={selectedImage}
-                    alt="Selected Image"
-                    className="mb-4"
-                  />
-                  {tumourFound ? (
-                    <div>
+            <div className='w-full h-[300px] flex justify-center pt-[50px] px-2'>
+              <div className='w-full md:w-[700px] h-[500px] bg-white/30 rounded-lg'>
+                <h2 className="h-[50px] text-xl font-semibold mb-2 py-4 text-center text-white font-['Poppins']">Selected Image:</h2>
+                {selectedImage && (
+                  <div className='w-full'>
+                    <div className='w-full flex justify-center pt-6'>
                       <img
-                        src= { y1 }
-                        alt="Tumour Image"
-                        className="mb-4"
+                        src={ y1 }
+                        alt="Selected Image"
+                        className="mb-4 rounded-lg"
                       />
-                      <p className="text-lg font-semibold text-red-600">Brain Tumour Found</p>
                     </div>
-                  ) : (
-                    <p className="text-lg font-semibold">Analyzing...</p>
-                  )}
+                    {tumourFound ? (
+                      <div className='w-full flex-col justify-center'>
+                        <div className='w-full flex justify-self-center'>
+                          <img
+                            src= { map[y1] }
+                            alt="Tumour Image"
+                            className="mb-4"
+                          />
+                        </div>
+                        <p className="text-lg font-medium font-['Poppins'] text-center text-red-600">Brain Tumour Found!</p>
+                      </div>
+                    ) : (
+                      <p className="text-lg text-center text-white font-['Poppins'] font-semibold">Analyzing...</p>
+                    )}
                 </div>
               )}
+              </div>
             </div>
           </div>
         </div>

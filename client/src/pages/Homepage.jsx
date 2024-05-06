@@ -140,29 +140,6 @@ function Homepage() {
           </div>
         </div>
       </div>
-      
-      {/* Gyan ki baat Section
-      <div className="w-full h-[600px] bg-gray-900 flex-col space-y-10 justify-center relative pt-20">
-        <div className="w-full h-[30px] flex justify-center items-center text-center text-white text-4xl font-semibold font-['Jersey'] mt-4 relative">
-          <div className="w-60 h-60 -skew-x-12 rounded-full bg-white/30 absolute top-4 right-[25%] -z-1"></div>
-          
-          <span>Advance MRI Image Analysis</span>
-        </div>
-
-        <div className="w-full h-[30px] flex justify-center items-center text-center text-white font-['Poppins'] mt-14">
-
-          <div className="w-[1000px] h-10">
-            <span className="text-center">
-              Our Project utilizes state-of-the-art Artificial Intelligence Algorithms to analyse MRI scans, provide you with proper segmentation of brain tumours and generate detailed reports. With a Team of experts of both medical imaging and AI, we are able to provide you with accurate results.
-            </span>
-          </div>
-        </div>
-
-        <div className="w-full h-32 pt-20 flex justify-center">
-          <button className="w-[300px] text-white bg-white/30 text-center border py-2 rounded">Discover Our Technology</button>
-        </div>
-
-      </div> */}
 
       {/* This section is about the Gyan ki baate*/}
       <div className="w-full h-[700px] md:h-[600px] bg-gray-900 flex justify-center pt-32">
@@ -183,7 +160,7 @@ function Homepage() {
         </div>
       </div>
 
-      {/* Commonly Asked Questions Section */}
+      Commonly Asked Questions Section
       <div className="w-full h-[900px] md:h-[700px] flex items-center justify-center p-4">
         <div className="w-[1200px] h-[950px] md:h-[650px] bg-white/30 flex-col md:flex space-x-0 md:space-x-2 px-2 py-10 rounded-md">
           <div className="w-full md:w-[35%] h-auto md:h-[650px] flex-col space-y-2 p-4">
