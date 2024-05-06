@@ -160,7 +160,7 @@ function Homepage() {
         </div>
       </div>
 
-      Commonly Asked Questions Section
+      {/* Commonly Asked Questions Section
       <div className="w-full h-[900px] md:h-[700px] flex items-center justify-center p-4">
         <div className="w-[1200px] h-[950px] md:h-[650px] bg-white/30 flex-col md:flex space-x-0 md:space-x-2 px-2 py-10 rounded-md">
           <div className="w-full md:w-[35%] h-auto md:h-[650px] flex-col space-y-2 p-4">
@@ -170,7 +170,7 @@ function Homepage() {
           </div>
           <div className="w-full md:w-[65%] h-[700px] md:h-full bg-green-600 md:bg-blue-600"></div>
         </div>
-      </div>
+      </div> */}
       
       <Chatbot />
 
