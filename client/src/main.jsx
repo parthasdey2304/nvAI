@@ -7,7 +7,7 @@ import Detection from './pages/Detection';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <Routes /> */}
-    {/* <Homepage /> */}
-    <Detection />
+    <Homepage />
+    {/* <Detection /> */}
   </React.StrictMode>,
 )
