@@ -1,12 +1,4 @@
 from flask import Flask, request, jsonify
-"""
-Flask API endpoint for image classification. 
-
-Loads a pretrained TensorFlow model and provides a /predict endpoint 
-to classify images uploaded by the user. Returns the predicted class 
-and confidence score. Handles file uploads and validation. Saves images 
-to MongoDB after prediction.
-"""
 from werkzeug.utils import secure_filename
 import os
 from pymongo import MongoClient
@@ -24,7 +16,7 @@ model = tf.keras.models.load_model('path_to_your_model')
 # yes_collection = db['yes']
 # no_collection = db['no']
 
-# Define allowed image extensions
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def allowed_file(filename):
