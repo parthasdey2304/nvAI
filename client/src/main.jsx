@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'remixicon/fonts/remixicon.css';
 import Homepage from './pages/Homepage';
+import Register from './pages/Register';
 import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -24,9 +25,13 @@ const router = createBrowserRouter([
     element: <About />
   },
   {
+    path: '/register',
+    element: <Register />
+  },
+  {
     path: '/github',
     element: (
-      <a href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
+      <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
         Redirecting to GitHub
       </a>
     )
