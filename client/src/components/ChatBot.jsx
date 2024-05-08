@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Chatbot() {
+  chat = ""
   const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -26,7 +27,7 @@ function Chatbot() {
         messages: [
           {
             role: 'user',
-            content: "Act like you are a pro doctor and answer these in less than 100 words the users input : " + inputValue
+            content: "Act like you are a pro doctor and answer these in less than 80 words if the user says something be attentive and ask for more info the users input : " + inputValue
           }
         ]
       }
