@@ -9,15 +9,34 @@ function Chatbot() {
   const sendMessage = async () => {
     if (inputValue.trim() === '') return;
 
+    // Add user's message to chat history
     setMessages([...messages, { text: inputValue, sender: 'user' }]);
     setInputValue('');
 
-    try {
-      const response = await axios.post('GEMINI_API_URL', {
-        message: inputValue,
-      });
+    const options = {
+      method: 'POST',
+      url: 'https://chatgpt-best-price.p.rapidapi.com/v1/chat/completions',
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': 'c6150aa0fbmshc0a1461851bd7ecp100c48jsnac068272b7e6',
+        'X-RapidAPI-Host': 'chatgpt-best-price.p.rapidapi.com'
+      },
+      data: {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: "Act like you are a pro doctor and answer these in less than 100 words the users input : " + inputValue
+          }
+        ]
+      }
+    };
 
-      setMessages([...messages, { text: response.data, sender: 'bot' }]);
+    try {
+      const response = await axios.request(options);
+      const botResponse = response.data.choices[0].message.content;
+      // Add bot's response to chat history
+      setMessages([...messages, { text: botResponse, sender: 'bot' }]);
     } catch (error) {
       console.error('Error fetching response:', error);
     }
@@ -38,7 +57,7 @@ function Chatbot() {
           className="bg-white/30 duration-300 hover:duration-300 backdrop-blur-3xl hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex-col"
           onClick={toggleChat}
         >
-          <i class="ri-chat-3-fill"></i> AI Chat
+          <i className="ri-chat-3-fill"></i> AI Chat
         </button>
       )}
       {showChat && (
