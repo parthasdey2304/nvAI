@@ -5,9 +5,9 @@ import Footer from '../components/Footer';
 function Register() {
   return (
     <div>
-      <Navbar />
+      <Navbar  logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Detection' user_val={false} />
 
-      <div className="w-full h-[600px] bg-blue-600"></div>
+      <div className="w-full h-[600px] bg-blue-600 pt-28 md:pt-52"></div>
 
       <Footer />
     </div>

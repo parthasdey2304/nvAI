@@ -16,7 +16,7 @@ function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, us
         <div className="hidden md:block pt-2">
             <ul className={`flex space-x-1 justify-center ${!isLoggedIn? "pl-20" : null}`}>
                 {links.map((link, index) => (
-                    <li key={index} className={`text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins'] ${active === link ? 'bg-white/30 text-white' : 'text-white'}`}>
+                    <li key={index} className={`text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins'] cursor-pointer ${active === link ? 'bg-white/30 text-white' : 'text-white'}`}>
                         <Link to={`/${link.toLowerCase()}`}>{link}</Link>
                     </li>
                 ))}

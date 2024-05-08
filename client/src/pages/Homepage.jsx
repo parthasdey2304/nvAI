@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Key_features_Cards from "../components/Key_features_Cards";
 import Pricing_Cards from "../components/Pricing_Cards";
 import Chatbot from "../components/ChatBot";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -27,12 +28,12 @@ function Homepage() {
         </div>
 
         <div className="w-full h-[100px] flex justify-center items-center font-['Popping'] pt-10 relative">
-          <a
-            href="#key_features"
+          <Link
+            to="/detection"
             className="text-black text-xl font-medium px-6 py-3 bg-white hover:bg-blue-600 hover:text-white duration-300 hover:duration-300 rounded-lg font-['Poppins']"
           >
             Learn More
-          </a>
+          </Link>
           <div className="w-64 h-64 rounded-full -skew-y-6 bg-white/30 absolute right-[20%] -z-1"></div>
         </div>
 
