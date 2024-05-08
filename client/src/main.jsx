@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './output.css';
+// import './output.css';
 import Redirect from './pages/Redirect_Loading';
 
 const router = createBrowserRouter([
