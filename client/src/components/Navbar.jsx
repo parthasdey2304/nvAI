@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+// import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
 import { useState, useRef } from "react";
 
 function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, user_img = null }) {

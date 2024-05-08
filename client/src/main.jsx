@@ -7,7 +7,7 @@ import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './output.css';
-import Login from './components/Login';
+import Redirect from './pages/Redirect_Loading';
 
 const router = createBrowserRouter([
   {
@@ -32,12 +32,13 @@ const router = createBrowserRouter([
   },
   {
     path: '/github',
-    element: (
-        <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
-          Redirecting to GitHub
-        </a>
+    // element: (
+    //     <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
+    //       Redirecting to GitHub
+    //     </a>
 
-    )
+    // )
+    element: <Redirect to='https://github.com/parthasdey2304' />
   }
 ]);
 
