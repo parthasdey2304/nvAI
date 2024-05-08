@@ -11,7 +11,7 @@ function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, us
         </div>
 
         <div className="hidden md:block pt-2">
-            <ul className="flex justify-center pl-20">
+            <ul className="flex space-x-1 justify-center pl-20">
                 {links.map((link, index) => (
                     <li key={index} className={`text-xl font-normal px-4 py-1 hover:bg-white/30 duration-300 hover:duration-300 rounded font-['Poppins'] ${active === link ? 'bg-white/30 text-white' : 'text-white'}`}>
                         <a href={link.toLowerCase()}>{link}</a>
