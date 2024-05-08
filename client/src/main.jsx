@@ -6,6 +6,8 @@ import Register from './pages/Register';
 import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './output.css';
+import Login from './components/Login';
 
 const router = createBrowserRouter([
   {
@@ -31,9 +33,10 @@ const router = createBrowserRouter([
   {
     path: '/github',
     element: (
-      <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
-        Redirecting to GitHub
-      </a>
+        <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
+          Redirecting to GitHub
+        </a>
+
     )
   }
 ]);
@@ -42,5 +45,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     {/* <Homepage /> */}
     <RouterProvider router={router} />
+    {/* <Login /> */}
   </React.StrictMode>,
 )
