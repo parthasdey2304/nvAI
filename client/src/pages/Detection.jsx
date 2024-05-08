@@ -22,8 +22,8 @@ function Detection() {
   map['n2'] = mn2;
 
   const handleImageSelect = (image) => {
-    setSelectedImage(image); // Remove the curly braces from around the image variable
-    // Simulate analysis effect
+    setSelectedImage(image); 
+
     setTimeout(() => {
       setTumourFound(true);
     }, 2000);
@@ -32,9 +32,9 @@ function Detection() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Detection' user_val={true} />
 
-      <div className="w-full h-[1500px] md:h-[2000px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64">
+      <div className="w-full h-[1900px]  md:h-[1500px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64">
         <h1 className="text-5xl text-center font-['Merriweather'] text-white font-bold mb-4">Brain Tumour Detector🧠</h1>
 
         <div className="w-full flex justify-center items-center text-center py-10">
@@ -83,7 +83,7 @@ function Detection() {
             </div>
 
             <div className='w-full h-[300px] flex justify-center pt-[50px] px-2'>
-              <div className='w-full md:w-[700px] h-[500px] bg-white/30 rounded-lg'>
+              <div className='w-full md:w-[700px] h-[400px] bg-white/30 rounded-lg'>
                 <h2 className="h-[50px] text-xl font-semibold mb-2 py-4 text-center text-white font-['Poppins']">Selected Image:</h2>
                 {selectedImage && (
                   <div className='w-full'>
@@ -96,14 +96,14 @@ function Detection() {
                     </div>
                     {tumourFound ? (
                       <div className='w-full flex-col justify-center'>
-                        <div className='w-full flex justify-self-center'>
+                        {/* <div className='w-full flex justify-self-center'>
                           <img
                             src= { map[y1] }
                             alt="Tumour Image"
                             className="mb-4"
                           />
-                        </div>
-                        <p className="text-lg font-medium font-['Poppins'] text-center text-red-600">Brain Tumour Found!</p>
+                        </div> */}
+                        <p className="text-lg font-medium font-['Poppins'] text-center text-white">Brain Tumour Found!</p>
                       </div>
                     ) : (
                       <p className="text-lg text-center text-white font-['Poppins'] font-semibold">Analyzing...</p>

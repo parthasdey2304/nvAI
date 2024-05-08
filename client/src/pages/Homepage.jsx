@@ -7,7 +7,7 @@ import Chatbot from "../components/ChatBot";
 function Homepage() {
   return (
     <div className="bg-gray-900">
-      <Navbar />
+      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Home' user_val={false} />
       {/* <Hamburger /> */}
 
       {/* Hero Section and Key Features */}
