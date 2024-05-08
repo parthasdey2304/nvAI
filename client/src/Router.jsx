@@ -5,16 +5,18 @@ import About from './pages/About.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 
-const Routes = () => {
+const Router = () => {
   return (
-    <Router>
+    <Router basename='/'>
+      <Routes>
         <Route exact path="/" component={Homepage} />
         <Route path="/detection" component={Detection} />
         <Route path="/about" component={About} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+      </Routes>
     </Router>
   );
 };
 
-export default Routes;
+export default Router;

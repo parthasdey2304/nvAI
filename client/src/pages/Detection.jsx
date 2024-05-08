@@ -32,7 +32,7 @@ function Detection() {
 
   return (
     <div>
-      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Detection' user_val={true} />
+      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Detection' user_val={false} />
 
       <div className="w-full h-[1900px]  md:h-[1500px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64">
         <h1 className="text-5xl text-center font-['Merriweather'] text-white font-bold mb-4">Brain Tumour Detector🧠</h1>
