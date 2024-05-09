@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     //     </a>
 
     // )
-    element: <Redirect to='https://github.com/parthasdey2304' />
+    element: <Redirect to='https://github.com/parthasdey2304/nvAI' />
   }
 ]);
 

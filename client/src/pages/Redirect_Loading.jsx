@@ -2,19 +2,16 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const LoadingScreen = ({ redirectTo }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      navigate(redirectTo);
-    }, 2000);
-
-    return () => clearTimeout(timeout);
-  }, [navigate, redirectTo]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.href = redirectTo;
+  //   }, 1000);
+  // }, []);
 
   return (
     <div className='w-full h-screen flex justify-center items-center'>
-      <div className='w-[100px] h-[100px] bg-white'></div>
+      <div className='w-[100px] h-[100px] animate-spin rounded-full border-8 border-t-blue-600'>
+      </div>
     </div>
   );
 };
