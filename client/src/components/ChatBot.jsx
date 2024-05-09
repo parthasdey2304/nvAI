@@ -51,7 +51,7 @@ function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-5 right-0 md:bottom-5 md:right-5 font-['Poppins'] duration-300">
+    <div className="fixed bottom-5 right-5 md:bottom-5 md:right-5 font-['Poppins'] duration-300">
       {!showChat && (
         <button
           className="bg-white/30 duration-300 hover:duration-300 backdrop-blur-3xl hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex-col"
