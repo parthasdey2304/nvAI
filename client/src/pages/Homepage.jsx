@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Homepage() {
   return (
     <div className="bg-gray-900">
-      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Home' user_val={false} />
+      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Home' user_val={ false }  />
       {/* <Hamburger /> */}
 
       {/* Hero Section and Key Features */}

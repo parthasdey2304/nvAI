@@ -40,11 +40,11 @@ function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, us
             </ul>
         </div>
 
-        <div className='hidden md:block'>
+        {/* <div className='hidden md:block'>
             {isLoggedIn ? (
                 <div className="flex items-center space-x-4 md:pt-2 md:pr-4">
-                    <div className="w-[40px] h-[40px] rounded-full overflow-hidden bg-white">
-                        <img src={user_img} alt="" className="w-full h-full object-cover" />
+                    <div className="w-[40px] h-[40px] rounded-full overflow-hidden bg-white cursor-pointer">
+                        <img src={user_img} alt="" className="w-full h-full object-cover rounded-full" />
                     </div>
                 </div>
             ) : (
@@ -53,7 +53,7 @@ function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, us
                     <Link to="/register" className="text-black text-xl font-semibold px-4 pt-2.5 pb-1 -mt-1 bg-white duration-300 hover:duration-300 rounded font-['Poppins'] hover:bg-blue-600 hover:text-white">Register</Link>
                 </div>
             )}
-        </div>
+        </div> */}
     </div>
   );
 }
