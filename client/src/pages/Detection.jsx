@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import axios from 'axios';
 import y1 from '../assets/brain_sample_images/marked_images/y1.jpg';
 import y2 from '../assets/brain_sample_images/marked_images/y2.jpg';
 import n1 from '../assets/brain_sample_images/marked_images/n1.jpg';
@@ -9,6 +10,7 @@ import my1 from '../assets/brain_sample_images/only_images/my1.jpg';
 import my2 from '../assets/brain_sample_images/only_images/my2.jpg';
 import mn1 from '../assets/brain_sample_images/only_images/mn1.jpg';
 import mn2 from '../assets/brain_sample_images/only_images/mn2.jpg';
+import Chatbot from '../components/ChatBot';
 
 
 function Detection() {
@@ -28,10 +30,25 @@ function Detection() {
       setTumourFound(true);
     }, 2000);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/submit-vote', { name, voterId, party });
+      alert('Vote submitted successfully');
+      setName('');
+      setVoterId('');
+      setParty('');
+      console.log(`Submitted vote for ${name} with voterId ${voterId} and party ${party}`);
+    } catch (error) {
+      console.error('Error submitting vote:', error);
+    }
+  };
   
 
   return (
     <div>
+      <Chatbot />
       <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Detection' user_val={false} />
 
       <div className="w-full h-[1900px]  md:h-[1500px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64">
