@@ -8,7 +8,7 @@ import tensorflow as tf
 app = Flask(__name__)
 
 # Load the machine learning model
-model = tf.keras.models.load_model('path_to_your_model')
+model = tf.keras.models.load_model('model.keras')
 
 # # Connect to MongoDB
 # client = MongoClient('mongodb://localhost:27017/')
