@@ -1,77 +1,71 @@
-from flask import Flask, request, jsonify
-from werkzeug.utils import secure_filename
-import os
-from pymongo import MongoClient
+from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
+import cv2
 import numpy as np
+from PIL import Image
+import io
 import tensorflow as tf
+from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
+CORS(app)
 
-# Load the machine learning model
-model = tf.keras.models.load_model('model.keras')
+# Load your pre-trained Keras model
+model = load_model('model.h5')
 
-# # Connect to MongoDB
-# client = MongoClient('mongodb://localhost:27017/')
-# db = client['your_database']
-# yes_collection = db['yes']
-# no_collection = db['no']
+def preprocess_image(image):
+    # Preprocess the image as required by your model
+    # For example, resize to the input size expected by the model
+    image = cv2.resize(image, (224, 224))
+    image = image / 255.0  # Normalize to [0, 1]
+    image = np.expand_dims(image, axis=0)  # Add batch dimension
+    return image
 
+def detect_tumors(image):
+    # Preprocess the image
+    preprocessed_image = preprocess_image(image)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+    # Run the model inference
+    predictions = model.predict(preprocessed_image)
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    # Assuming the model outputs bounding boxes and confidence scores
+    # Here, we use dummy values for demonstration
+    # Replace with your actual model output processing logic
+    boxes = [(int(pred[0] * image.shape[1]), int(pred[1] * image.shape[0]),
+              int(pred[2] * image.shape[1]), int(pred[3] * image.shape[0])) for pred in predictions]
+    confidence_scores = [pred[4] for pred in predictions]
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file part'})
+    return boxes, confidence_scores
+
+def draw_boxes(image, boxes):
+    for (x, y, w, h) in boxes:
+        cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
+    return image
+
+@app.route('/upload', methods=['POST'])
+def upload_image():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image provided'}), 400
     
-    file = request.files['file']
-    
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'})
-    
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        filepath = os.path.join('uploads', filename)
-        file.save(filepath)
-        
-        # Perform prediction
-        img_height = 224 # Added definition for img_height
-        img_width = 224 # Added definition for img_width
-        img = tf.keras.preprocessing.image.load_img(filepath, target_size=(img_height, img_width))
-        img_array = tf.keras.preprocessing.image.img_to_array(img)
-        img_array = tf.expand_dims(img_array, 0)  # Create batch axis
-        predictions = model.predict(img_array)
-        
-        confidence_score = np.max(predictions)
-        predicted_class = np.argmax(predictions)
-        if predicted_class == 0:
-            result = 'no'
-            # collection = no_collection
-        else:
-            result = 'yes'
-            # collection = yes_collection
-        
-        # Save image to MongoDB
-        with open(filepath, 'rb') as f:
-            img_data = f.read()
-        os.remove(filepath)  # Remove uploaded image after saving to MongoDB
-        # collection.insert_one({'image': img_data})
-        
-        return jsonify({'result': result, 'confidence_score': float(confidence_score)})
-    else:
-        return jsonify({'error': 'Invalid file format'})
+    file = request.files['image']
+    image = Image.open(file.stream).convert('RGB')
+    image_np = np.array(image)
 
+    boxes, confidence_scores = detect_tumors(image_np)
+    image_with_boxes = draw_boxes(image_np, boxes)
 
+    # Convert image back to PIL format
+    image_pil = Image.fromarray(image_with_boxes)
+    buf = io.BytesIO()
+    image_pil.save(buf, format='PNG')
+    buf.seek(0)
 
-# @app.route('/update_model', methods=['POST'])
-# def update_model():
-#     # Fetch new data from MongoDB and retrain the model
-#     # Add your model update logic here
-#     return jsonify({'message': 'Model updated successfully'})
+    response = {
+        'result': 'Tumor detected' if boxes else 'No tumor detected',
+        'confidence_scores': confidence_scores
+    }
+
+    return jsonify(response), 200, {'Content-Type': 'image/png'}, send_file(buf, mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
