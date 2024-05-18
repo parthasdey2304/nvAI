@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import 'remixicon/fonts/remixicon.css';
 import Homepage from './pages/Homepage';
 import Register from './pages/Register';
 import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import './output.css';
+import { Auth0Provider } from '@auth0/auth0-react';
 import Redirect from './pages/Redirect_Loading';
 
 const router = createBrowserRouter([
@@ -32,20 +32,21 @@ const router = createBrowserRouter([
   },
   {
     path: '/github',
-    // element: (
-    //     <a className='text-white' href="https://github.com/parthasdey2304" target="_blank" rel="noopener noreferrer">
-    //       Redirecting to GitHub
-    //     </a>
-
-    // )
     element: <Redirect to='https://github.com/parthasdey2304/nvAI' />
   }
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/* <Homepage /> */}
-    <RouterProvider router={router} />
-    {/* <Login /> */}
-  </React.StrictMode>,
-)
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+  <Auth0Provider
+  domain="dev-axjbuwwiq25fwovq.eu.auth0.com"
+  clientId="ks1lkoAPLGz5LnFDfPZd9Aju7TCy0khD"
+  authorizationParams={{
+    redirect_uri: window.location.origin
+  }}
+  >
+      <RouterProvider router={router} />
+      {/* <App /> */}
+    </Auth0Provider>,
+  );

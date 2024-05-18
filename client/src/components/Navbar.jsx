@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, user_img = null }) {
   const [isLoggedIn, setIsLoggedIn] = useState(user_val);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { loginWithRedirect } = useAuth0();
 
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);
@@ -54,6 +56,11 @@ function Navbar({ logo = "LOGO", links = [], active = null, user_val = false, us
                 </div>
             )}
         </div> */}
+
+        {/* this is the toggle for the login/logout button */}
+        {/* <span onClick={() => {setLoggedIn(!loggedIn)}} className="px-4 py-2 duration-300 rounded bg-blue-600">
+            {isLoggedIn? (<Profile />) : (<button onClick={() => loginWithRedirect()}>Login</button>)}
+        </span> */}
     </div>
   );
 }
