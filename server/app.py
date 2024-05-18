@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load your pre-trained Keras model
-model = load_model('model.h5')
+model = load_model('model.keras')
 
 def preprocess_image(image):
     # Preprocess the image as required by your model

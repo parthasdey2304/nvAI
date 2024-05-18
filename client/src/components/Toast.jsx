@@ -3,7 +3,7 @@ import { useState } from "react";
 const Toast = ({ message }) => {
     const [show, setShow] = useState(true);
     return (
-        <div id="toast-default" class={`flex items-center w-full max-w-xs p-4 text-gray-500 bg-white/30 rounded-lg shadow fixed top-20 right-4` + (show? "" : " hidden")} role="alert">
+        <div id="toast-default" class={`flex items-center w-full max-w-xs p-4 text-gray-500 bg-white/30 backdrop-blur-xl rounded-lg shadow fixed top-20 right-4` + (show? "" : " hidden")} role="alert">
             <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-600 rounded p-1">
                 <span class="material-symbols-outlined text-white">warning</span>
             </div>
