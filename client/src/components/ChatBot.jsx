@@ -26,7 +26,7 @@ function Chatbot() {
         messages: [
           {
             role: 'user',
-            content: "Act like you are a pro doctor and answer these in less than 80 words if the user says something be attentive and ask for more info the users input : " + inputValue
+            content: "Act like you are a pro doctor and answer these in less than 80 words if the user says something be attentive and ask for more info the users input(serious caution do not answer any questions other than the ones regarding medical issues) cause i am using you apis for a medical chatbot so these responses that you provide should be for this only and never say anything like consider visiting a doctor becuase you are doctor ok now answer this  : " + inputValue
           }
         ]
       }
@@ -86,7 +86,6 @@ function Chatbot() {
                 className={`w-[90%] message p-2 rounded-lg duration-300 ${
                   message.sender === 'bot' ? 'bg-blue-100 text-blue-900 ml-4 text-left' : 'bg-gray-100 text-gray-900 mr-4 text-left'
                 }`}
-                // style={{ maxWidth: '80%', textAlign: message.sender === 'bot' ? 'left' : 'right' }}
               >
                 {message.text}
               </div>
