@@ -51,6 +51,9 @@ def upload_image():
     image = Image.open(file.stream).convert('RGB')
     image_np = np.array(image)
 
+    # saving the image
+    cv2.imwrite('image.png', image_np)
+
     boxes, confidence_scores = detect_tumors(image_np)
     image_with_boxes = draw_boxes(image_np, boxes)
 

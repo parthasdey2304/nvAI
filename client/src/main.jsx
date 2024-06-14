@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import Detection from './pages/Detection';
 import About from './pages/About';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
+// import { Auth0Provider } from '@auth0/auth0-react';
 import Redirect from './pages/Redirect_Loading';
 
 const router = createBrowserRouter([
@@ -39,14 +39,14 @@ const router = createBrowserRouter([
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <Auth0Provider
-  domain="dev-axjbuwwiq25fwovq.eu.auth0.com"
-  clientId="ks1lkoAPLGz5LnFDfPZd9Aju7TCy0khD"
-  authorizationParams={{
-    redirect_uri: window.location.origin
-  }}
-  >
+  // <Auth0Provider
+  // domain="dev-axjbuwwiq25fwovq.eu.auth0.com"
+  // clientId="ks1lkoAPLGz5LnFDfPZd9Aju7TCy0khD"
+  // authorizationParams={{
+  //   redirect_uri: window.location.origin
+  // }}
+  // >
+  //     {/* <App /> */}
+  //   </Auth0Provider>,
       <RouterProvider router={router} />
-      {/* <App /> */}
-    </Auth0Provider>,
   );
