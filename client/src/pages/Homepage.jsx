@@ -1,3 +1,5 @@
+import React from "react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Key_features_Cards from "../components/Key_features_Cards";
@@ -5,14 +7,25 @@ import Pricing_Cards from "../components/Pricing_Cards";
 import Chatbot from "../components/ChatBot";
 import { Link } from "react-router-dom";
 
+const animationVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
+
 function Homepage() {
   return (
     <div className="bg-gray-900">
-      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Home' user_val={ false }  />
+      <Navbar logo='nvAI' links={['Home', 'Detection', 'GitHub', 'About']} active='Home' user_val={false} />
       {/* <Hamburger /> */}
 
       {/* Hero Section and Key Features */}
-      <div className="w-full h-[2200px] md:h-[1700px] bg-gray-900 flex-col justify-center relative pt-20 md:pt-52">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1 }}
+        variants={animationVariants}
+        className="w-full h-[2200px] md:h-[1700px] bg-gray-900 flex-col justify-center relative pt-20 md:pt-52"
+      >
         <div className="w-52 h-52 rounded-full bg-white/30 absolute duration-500 skew-x-12 md:-skew-x-12 top-[5%] md:top-[10%] left-[21%] -z-1"></div>
 
         <div className="w-full h-[300px] flex justify-center items-center font-['Merriweather'] pt-52 px-2 md:px-0">
@@ -73,10 +86,16 @@ function Homepage() {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Pricing Section */}
-      <div className="w-full h-[2200px] min-[1110px]:h-[900px] md:h-[1600px] bg-gray-900 flex-col justify-center relative pt-20">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, delay: 0.5 }}
+        variants={animationVariants}
+        className="w-full h-[2200px] min-[1110px]:h-[900px] md:h-[1600px] bg-gray-900 flex-col justify-center relative pt-20"
+      >
         <div className="w-full h-[30px] flex justify-center items-center text-center text-white text-4xl font-semibold font-['Jersey'] mt-4 relative">
           <div className="w-60 h-60 -skew-x-12 rounded-full bg-white/30 absolute top-4 right-[25%] -z-1"></div>
           <span>Choose Your Plan</span>
@@ -102,7 +121,7 @@ function Homepage() {
               // button_color="transparent"
             />
 
-              <div className="w-60 h-60 skew-x-12 rounded-full bg-white/30 absolute bottom-0 left-[30%] -z-5 hidden"></div>
+            <div className="w-60 h-60 skew-x-12 rounded-full bg-white/30 absolute bottom-0 left-[30%] -z-5 hidden"></div>
 
             <Pricing_Cards
               tier="BASIC"
@@ -140,10 +159,16 @@ function Homepage() {
             {/* <Pricing_Cards /> */}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* This section is about the Gyan ki baate*/}
-      <div className="w-full h-[700px] md:h-[600px] bg-gray-900 flex justify-center pt-32">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, delay: 1 }}
+        variants={animationVariants}
+        className="w-full h-[700px] md:h-[600px] bg-gray-900 flex justify-center pt-32"
+      >
         <div className="w-full h-full flex-col text-center justify-center items-center">
           <div className="w-full h-[30px] flex-col space-y-10 justify-center items-center text-center text-white mt-4 relative">
             <p className="text-4xl font-['Jersey'] font-semibold ">Advance MRI Image Analysis</p>
@@ -159,7 +184,7 @@ function Homepage() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Commonly Asked Questions Section
       <div className="w-full h-[900px] md:h-[700px] flex items-center justify-center p-4">
