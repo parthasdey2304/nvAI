@@ -57,7 +57,7 @@ function Chatbot() {
           className="bg-white/30 duration-300 hover:duration-300 backdrop-blur-3xl hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg flex-col"
           onClick={toggleChat}
         >
-          <i className="ri-chat-3-fill"></i> AI Chat
+          <i className="ri-chat-3-fill"></i> AI Doctor
         </button>
       )}
       {showChat && (
