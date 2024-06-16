@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load your pre-trained Keras model
-model = load_model('model.keras')
+model = load_model('model/model.keras')
 
 def preprocess_image(image):
     # Preprocess the image as required by your model
@@ -52,7 +52,7 @@ def upload_image():
     image_np = np.array(image)
 
     # saving the image
-    cv2.imwrite('image.png', image_np)
+    cv2.imwrite('uploads/brain_tumour_image.png', image_np)
 
     boxes, confidence_scores = detect_tumors(image_np)
     image_with_boxes = draw_boxes(image_np, boxes)
