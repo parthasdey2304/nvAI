@@ -78,7 +78,7 @@ function Chatbot() {
               />
             </svg>
           </button>
-          <h2 className="text-lg font-semibold text-center mb-2 duration-300">AI Chat</h2>
+          <h2 className="text-lg font-semibold text-center mb-2 duration-300">AI Doctor</h2>
           <div className="chatbot-messages w-[80%] md:w-[300px] h-[400px] overflow-y-auto space-y-2 duration-300">
             {messages.map((message, index) => (
               <div
