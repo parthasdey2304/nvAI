@@ -9,8 +9,8 @@ function Chatbot() {
   const sendMessage = async () => {
     if (inputValue.trim() === '') return;
 
-    // Add user's message to chat history
-    setMessages([...messages, { text: inputValue, sender: 'user' }]);
+    const userMessage = { text: inputValue, sender: 'user' };
+    setMessages(prevMessages => [...prevMessages, userMessage]);
     setInputValue('');
 
     const options = {
@@ -35,8 +35,8 @@ function Chatbot() {
     try {
       const response = await axios.request(options);
       const botResponse = response.data.choices[0].message.content;
-      // Add bot's response to chat history
-      setMessages([...messages, { text: botResponse, sender: 'bot' }]);
+      const botMessage = { text: botResponse, sender: 'bot' };
+      setMessages(prevMessages => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error fetching response:', error);
     }
@@ -61,7 +61,7 @@ function Chatbot() {
         </button>
       )}
       {showChat && (
-        <div className="shadow-lg bg-white rounded-lg p-4 duration-300">
+        <div className="shadow-lg bg-white rounded-lg p-4 duration-300 relative">
           <button className="absolute top-2 right-2" onClick={closeChat}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,8 +83,8 @@ function Chatbot() {
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`w-[90%] message p-2 rounded-lg duration-300 ${
-                  message.sender === 'bot' ? 'bg-blue-100 text-blue-900 ml-4 text-left' : 'bg-gray-100 text-gray-900 mr-4 text-left'
+                className={`max-w-[90%] min-w-fit message p-2 rounded-lg duration-300 ${
+                  message.sender === 'bot' ? 'bg-blue-100 text-blue-900 mr-4 text-left' : 'bg-gray-100 text-gray-900 ml-4 text-right'
                 }`}
               >
                 {message.text}
