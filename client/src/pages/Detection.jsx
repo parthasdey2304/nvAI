@@ -22,13 +22,21 @@ function Detection() {
   const [tumourFound, setTumourFound] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleImageSelect = (image, isSample = false) => {
+  const handleImageSelect = async (image, isSample = false) => {
     setSelectedImage(isSample ? image : URL.createObjectURL(image));
+    setResultImage(null); // Reset result image
     setError(false);
     setIsAnalyzing(true);
 
     const formData = new FormData();
-    formData.append("image", image);
+
+    if (isSample) {
+      const response = await fetch(image);
+      const blob = await response.blob();
+      formData.append("image", blob, `sample-${Date.now()}.jpg`);
+    } else {
+      formData.append("image", image);
+    }
 
     axios.post("http://127.0.0.1:5000/upload", formData, {
       headers: {
@@ -37,7 +45,8 @@ function Detection() {
     })
     .then((response) => {
       console.log("Server response received:", response.data);
-      setResultImage(selectedImage);
+      setSelectedImage(null); // Hide selected image after analysis
+      setResultImage(`http://127.0.0.1:5000/image_with_boxes?${new Date().getTime()}`);
       setConfidenceScores(response.data.predictions.map(prediction => prediction.confidence));
       setTumourFound(response.data.predictions.some(prediction => prediction.class === "yes"));
       setIsAnalyzing(false);
@@ -174,40 +183,41 @@ function Detection() {
                       <img
                         src={selectedImage}
                         alt="Selected Image"
-                        className="mb-4 rounded-lg"
+                        className={`mb-4 rounded-lg w-[200px]`}
                       />
                     </motion.div>
-                    {isAnalyzing ? (
+                    {isAnalyzing && (
                       <p className="text-lg text-center text-white font-['Poppins'] font-semibold">
                         Analyzing...
                       </p>
+                    )}
+                  </div>
+                )}
+                {resultImage && (
+                  <div className="w-full flex-col justify-center">
+                    {tumourFound ? (
+                      <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ duration: 1, delay: 1.2 }}
+                        variants={animationVariants}
+                        className="w-full flex-col justify-center"
+                      >
+                        <div className="w-full flex justify-center pt-6">
+                          <img
+                            src={resultImage}
+                            alt="Result Image"
+                            className="mb-4 rounded-lg w-[200px]"
+                          />
+                        </div>
+                        <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
+                          Confidence Scores: {confidenceScores.map(score => `${(score * 100).toFixed(2)}%`).join(", ")}
+                        </p>
+                      </motion.div>
                     ) : (
-                      <div className="w-full flex-col justify-center">
-                        {tumourFound ? (
-                          <motion.div
-                            initial="hidden"
-                            animate="visible"
-                            transition={{ duration: 1, delay: 1.2 }}
-                            variants={animationVariants}
-                            className="w-full flex-col justify-center"
-                          >
-                            <div className="w-full flex justify-center pt-6">
-                              <img
-                                src={`http://127.0.0.1:5000/image_with_boxes?${new Date().getTime()}`}
-                                alt="Result Image"
-                                className="mb-4 rounded-lg w-[200px]"
-                              />
-                            </div>
-                            <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
-                              Confidence Scores: {confidenceScores.join(", ")}
-                            </p>
-                          </motion.div>
-                        ) : (
-                          <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
-                            No Brain Tumour Found.
-                          </p>
-                        )}
-                      </div>
+                      <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
+                        No Brain Tumour Found.
+                      </p>
                     )}
                   </div>
                 )}

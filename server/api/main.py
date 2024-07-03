@@ -79,7 +79,7 @@ def upload():
 
 @app.route('/image_with_boxes', methods=['GET'])
 def get_image_with_boxes():
-    return send_file(output_path, mimetype='image/png')
+    return send_file("analysed/analysed.jpg", mimetype='image/png')
 
 if __name__ == '__main__':
     os.makedirs('uploads', exist_ok=True)
