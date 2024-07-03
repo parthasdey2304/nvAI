@@ -65,6 +65,10 @@ def annotate_image(image_path, detection_result, output_path):
 
     print(f"Image saved as {output_path}")
 
+@app.route("/")
+def index():
+    return "Hello this is the Brain Tumour API with Flask!"
+
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'image' not in request.files:
