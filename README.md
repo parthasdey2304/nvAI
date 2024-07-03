@@ -14,11 +14,23 @@ Welcome to our Brain Tumour Detection Model developed during the AI Unite Hackat
 
 ```
 {
-    "error" : "None",
-    "detection" : true,
-    "confidence_score" : 0.91,
-    "image_link" : "https://sample_link.image/"
+  "inference_id": "b20e9d99-8a77-4484-a30d-130aedfe49be",
+  "time": 0.03575260299976435,
+  "image": { "width": 319, "height": 360 },
+  "predictions": [
+    {
+      "x": 217.0,
+      "y": 185.5,
+      "width": 90.0,
+      "height": 85.0,
+      "confidence": 0.8729356527328491,
+      "class": "yes",
+      "class_id": 0,
+      "detection_id": "33c0f948-a90d-4039-83bc-a42386d5daec"
+    }
+  ]
 }
+
 ```
 
 ## Team Members
