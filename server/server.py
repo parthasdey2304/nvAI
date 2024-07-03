@@ -61,7 +61,7 @@ def annotate_image(image_path, detection_result, output_path):
 
     cv2.putText(image, label, label_position, font, font_scale, font_color, font_thickness)
 
-    cv2.imwrite(output_path, image)
+    cv2.imwrite("analysed/analysed.jpg", image)
 
     print(f"Image saved as {output_path}")
 
@@ -71,7 +71,7 @@ def upload():
         return jsonify({'message': 'No file part in the request'}), 400
     
     file = request.files['image']
-    file.save(image_path)
+    file.save("uploads/image.jpg")
     detection_result = detect_brain_tumor(image_path, model_id, api_url, api_key)
     annotate_image(image_path, detection_result, output_path)
 
@@ -83,4 +83,5 @@ def get_image_with_boxes():
 
 if __name__ == '__main__':
     os.makedirs('uploads', exist_ok=True)
+    os.makedirs('analysed', exist_ok=True)
     app.run(debug=True)
