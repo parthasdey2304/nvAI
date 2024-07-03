@@ -6,7 +6,6 @@ import axios from "axios";
 import y1 from "../assets/brain_sample_images/marked_images/y1.jpg";
 import y2 from "../assets/brain_sample_images/marked_images/y2.jpg";
 import n1 from "../assets/brain_sample_images/marked_images/n1.jpg";
-import n2 from "../assets/brain_sample_images/marked_images/n2.jpg";
 import Chatbot from "../components/ChatBot";
 import Toast from "../components/Toast";
 
@@ -24,54 +23,30 @@ function Detection() {
   const [error, setError] = useState(false);
 
   const handleImageSelect = (image, isSample = false) => {
-    if (isSample) {
-      setSelectedImage(image);
-      setError(false);
-      setIsAnalyzing(true);
+    setSelectedImage(isSample ? image : URL.createObjectURL(image));
+    setError(false);
+    setIsAnalyzing(true);
 
-      axios
-        .post("http://localhost:5000/upload", { image })
-        .then((response) => {
-          console.log("Server response received:", response.data);
-          setResultImage(image);
-          setConfidenceScores(response.data.confidence_scores);
-          setTumourFound(response.data.result === "Tumor detected");
-          setIsAnalyzing(false);
-        })
-        .catch((error) => {
-          console.error("Error uploading the file:", error);
-          setError(true);
-          setIsAnalyzing(false);
-        });
-    } else {
-      setSelectedImage(URL.createObjectURL(image));
-      setError(false);
-      setIsAnalyzing(true);
+    const formData = new FormData();
+    formData.append("image", image);
 
-      const formData = new FormData();
-      formData.append("image", image);
-
-      console.log("Sending image to the server...");
-
-      axios
-        .post("http://localhost:5000/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          console.log("Server response received:", response.data);
-          setResultImage(URL.createObjectURL(image));
-          setConfidenceScores(response.data.confidence_scores);
-          setTumourFound(response.data.result === "Tumor detected");
-          setIsAnalyzing(false);
-        })
-        .catch((error) => {
-          console.error("Error uploading the file:", error);
-          setError(true);
-          setIsAnalyzing(false);
-        });
-    }
+    axios.post("http://127.0.0.1:5000/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then((response) => {
+      console.log("Server response received:", response.data);
+      setResultImage(selectedImage);
+      setConfidenceScores(response.data.predictions.map(prediction => prediction.confidence));
+      setTumourFound(response.data.predictions.some(prediction => prediction.class === "yes"));
+      setIsAnalyzing(false);
+    })
+    .catch((error) => {
+      console.error("Error uploading the file:", error);
+      setError(true);
+      setIsAnalyzing(false);
+    });
   };
 
   const handleFileChange = (event) => {
@@ -218,9 +193,9 @@ function Detection() {
                           >
                             <div className="w-full flex justify-center pt-6">
                               <img
-                                src={resultImage}
+                                src={`http://127.0.0.1:5000/image_with_boxes?${new Date().getTime()}`}
                                 alt="Result Image"
-                                className="mb-4 rounded-lg"
+                                className="mb-4 rounded-lg w-[200px]"
                               />
                             </div>
                             <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
