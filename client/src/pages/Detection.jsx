@@ -14,6 +14,8 @@ const animationVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const serverLink = "http://127.0.0.1:5000/";
+
 function Detection() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [resultImage, setResultImage] = useState(null);
@@ -38,7 +40,7 @@ function Detection() {
       formData.append("image", image);
     }
 
-    axios.post("http://127.0.0.1:5000/upload", formData, {
+    axios.post(`${serverLink}/upload`, formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       }
@@ -46,7 +48,7 @@ function Detection() {
     .then((response) => {
       console.log("Server response received:", response.data);
       setSelectedImage(null); // Hide selected image after analysis
-      setResultImage(`http://127.0.0.1:5000/image_with_boxes?${new Date().getTime()}`);
+      setResultImage(`${serverLink}/image_with_boxes?${new Date().getTime()}`);
       setConfidenceScores(response.data.predictions.map(prediction => prediction.confidence));
       setTumourFound(response.data.predictions.some(prediction => prediction.class === "yes"));
       setIsAnalyzing(false);
