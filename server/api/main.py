@@ -9,10 +9,10 @@ app = Flask(__name__)
 CORS(app)
 
 image_path = 'uploads/image.jpg'
-output_path = 'uploads/analysed.jpg'
+output_path = 'analysed/analysed.jpg'
 model_id = 'brain-tumour-detection-g4iyq/2'
 api_url = 'https://detect.roboflow.com'
-api_key = 'USE_YOUR_OWN_API_KEY'
+api_key = 'qCN95qrzbuyZN1ZkMGWR'
 
 def detect_brain_tumor(image_path, model_id, api_url, api_key):
     client = InferenceHTTPClient(
@@ -24,6 +24,27 @@ def detect_brain_tumor(image_path, model_id, api_url, api_key):
     
     with open('response.json', 'w') as f:
         json.dump(result, f)
+
+    if not result['predictions']:
+        return jsonify(
+            {
+            "inference_id": "null",
+            "time": 0,
+            "image": { "width": 0, "height": 0 },
+            "predictions": [
+                {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0,
+                "confidence": 100,
+                "class": "no",
+                "class_id": 0,
+                "detection_id": "null"
+                }
+            ]
+            }
+        )
     
     return result
 
@@ -31,6 +52,11 @@ def annotate_image(image_path, detection_result, output_path):
     image = cv2.imread(image_path)
 
     prediction = detection_result['predictions'][0]
+
+    if not prediction:
+        cv2.imwrite(output_path, image)
+        pass
+
     x = int(prediction['x'])
     y = int(prediction['y'])
     width = int(prediction['width'])
