@@ -217,9 +217,19 @@ function Detection() {
                         </p>
                       </motion.div>
                     ) : (
+                      <
+                      >
+                        <div className="w-full flex justify-center pt-6">
+                          <img
+                            src={resultImage}
+                            alt="Result Image"
+                            className="mb-4 rounded-lg w-[200px]"
+                          />
+                        </div> 
                       <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
                         No Brain Tumour Found.
                       </p>
+                      </>
                     )}
                   </div>
                 )}
