@@ -12,7 +12,7 @@ image_path = 'uploads/image.jpg'
 output_path = 'analysed/analysed.jpg'
 model_id = 'brain-tumour-detection-g4iyq/2'
 api_url = 'https://detect.roboflow.com'
-api_key = 'Add_Your_Own_API_KEY' # Add the API key Here
+api_key = 'qCN95qrzbuyZN1ZkMGWR' # Add the API key Here
 
 def detect_brain_tumor(image_path, model_id, api_url, api_key):
     client = InferenceHTTPClient(
