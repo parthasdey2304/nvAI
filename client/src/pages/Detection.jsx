@@ -14,7 +14,7 @@ const animationVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const serverLink = "https://9a0e-157-40-89-187.ngrok-free.app";
+const serverLink = "http://127.0.0.1:5000/";
 
 function Detection() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -40,47 +40,27 @@ function Detection() {
       formData.append("image", image);
     }
 
-    axios
-      .get(`${serverLink}/image_with_boxes?${new Date().getTime()}`, {
-        responseType: "blob",
-      })
-      .then(response => {
-        setResultImage(URL.createObjectURL(response.data));
-      })
-      .catch(error => {
-        console.error("Error fetching the result image:", error);
-      });
-
-    axios
-      .post(`${serverLink}/upload`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then(response => {
-        console.log("Server response received:", response.data);
-        setSelectedImage(null); // Hide selected image after analysis
-        // setResultImage(
-        //   `${serverLink}/image_with_boxes?${new Date().getTime()}`
-        // );
-        setConfidenceScores(
-          response.data.predictions.map(prediction => prediction.confidence)
-        );
-        setTumourFound(
-          response.data.predictions.some(
-            prediction => prediction.class === "yes"
-          )
-        );
-        setIsAnalyzing(false);
-      })
-      .catch(error => {
-        console.error("Error uploading the file:", error);
-        setError(true);
-        setIsAnalyzing(false);
-      });
+    axios.post(`${serverLink}/upload`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+    .then((response) => {
+      console.log("Server response received:", response.data);
+      setSelectedImage(null); // Hide selected image after analysis
+      setResultImage(`${serverLink}/image_with_boxes?${new Date().getTime()}`);
+      setConfidenceScores(response.data.predictions.map(prediction => prediction.confidence));
+      setTumourFound(response.data.predictions.some(prediction => prediction.class === "yes"));
+      setIsAnalyzing(false);
+    })
+    .catch((error) => {
+      console.error("Error uploading the file:", error);
+      setError(true);
+      setIsAnalyzing(false);
+    });
   };
 
-  const handleFileChange = event => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     handleImageSelect(file);
   };
@@ -101,21 +81,21 @@ function Detection() {
         animate="visible"
         transition={{ duration: 1 }}
         variants={animationVariants}
-        className="flex-col justify-center mx-auto px-4 py-8 pt-28 md:pt-64 w-full h-[1900px] md:h-[1500px] container"
+        className="w-full h-[1900px] md:h-[1500px] flex-col justify-center container mx-auto px-4 py-8 pt-28 md:pt-64"
       >
-        <h1 className="mb-4 font-['Merriweather'] font-bold text-5xl text-center text-white">
+        <h1 className="text-5xl text-center font-['Merriweather'] text-white font-bold mb-4">
           Brain Tumour Detector🧠
         </h1>
 
-        <div className="flex justify-center items-center py-10 w-full text-center">
-          <div className="flex justify-center items-center w-[500px]">
+        <div className="w-full flex justify-center items-center text-center py-10">
+          <div className="flex items-center justify-center w-[500px]">
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col justify-center items-center border-2 border-gray-300 bg-gray-800 border-dashed rounded-lg w-full h-64 cursor-pointer"
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-800"
             >
-              <div className="flex flex-col justify-center items-center pt-5 pb-6">
+              <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
-                  className="mb-4 w-8 h-8 text-gray-500 dark:text-gray-400"
+                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -129,13 +109,13 @@ function Detection() {
                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                   />
                 </svg>
-                <p className="mb-2 font-['Poppins'] font-semibold text-blue-600 text-sm">
+                <p className="mb-2 font-semibold text-sm font-['Poppins'] text-blue-600">
                   <span className="font-normal text-gray-500">
                     Click to upload
                   </span>{" "}
                   or Browse Image
                 </p>
-                <p className="font-['Poppins'] text-gray-500 text-xs">
+                <p className="text-xs text-gray-500 font-['Poppins']">
                   PNG, JPG or JPEG
                 </p>
               </div>
@@ -149,13 +129,13 @@ function Detection() {
           </div>
         </div>
 
-        <h1 className="mb-10 font-['Poppins'] font-medium text-center text-white text-xl md:text-2xl">
+        <h1 className="text-xl md:text-2xl text-center font-['Poppins'] text-white font-medium mb-10">
           Or try with sample data
         </h1>
 
-        <div className="flex justify-center items-center w-full h-[400px] md:h-[200px]">
-          <div className="flex-col w-[700px] h-full">
-            <div className="flex flex-wrap justify-center md:justify-between space-x-2 px-2 w-full">
+        <div className="w-full h-[400px] md:h-[200px] flex justify-center items-center">
+          <div className="w-[700px] h-full flex-col">
+            <div className="w-full flex flex-wrap justify-center space-x-2 md:justify-between px-2">
               {[y1, y2, n1].map((sample, index) => (
                 <motion.div
                   key={index}
@@ -166,31 +146,31 @@ function Detection() {
                   onClick={() => {
                     handleImageSelect(sample, true);
                   }}
-                  className="flex-col bg-white/30 my-2 rounded-lg w-[200px] h-[240px] hover:scale-110 duration-300 hover:duration-300"
+                  className="w-[200px] h-[240px] bg-white/30 my-2 flex-col rounded-lg hover:scale-110 duration-300 hover:duration-300"
                 >
-                  <div className="flex justify-center p-2 w-full h-[190px]">
+                  <div className="w-full h-[190px] flex justify-center p-2">
                     <img
                       src={sample}
                       alt={`Sample Image ${index + 1}`}
-                      className="rounded-lg w-full h-full"
+                      className="w-full h-full rounded-lg"
                     />
                   </div>
-                  <div className='flex justify-center items-center w-full h-[50px] font-["Poppins"] text-center text-white'>
+                  <div className='w-full h-[50px] flex justify-center items-center text-center text-white font-["Poppins"]'>
                     Sample Image {index + 1}
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            <div className="flex justify-center px-2 pt-[50px] w-full h-[300px]">
+            <div className="w-full h-[300px] flex justify-center pt-[50px] px-2">
               <motion.div
                 initial="hidden"
                 animate="visible"
                 transition={{ duration: 1, delay: 0.8 }}
                 variants={animationVariants}
-                className="bg-white/30 rounded-lg w-full md:w-[700px] h-[400px]"
+                className="w-full md:w-[700px] h-[400px] bg-white/30 rounded-lg"
               >
-                <h2 className="mb-2 py-4 h-[50px] font-['Poppins'] font-semibold text-center text-white text-xl">
+                <h2 className="h-[50px] text-xl font-semibold mb-2 py-4 text-center text-white font-['Poppins']">
                   Selected Image:
                 </h2>
                 {selectedImage && (
@@ -200,7 +180,7 @@ function Detection() {
                       animate="visible"
                       transition={{ duration: 1, delay: 1 }}
                       variants={animationVariants}
-                      className="flex justify-center pt-6 w-full"
+                      className="w-full flex justify-center pt-6"
                     >
                       <img
                         src={selectedImage}
@@ -209,48 +189,46 @@ function Detection() {
                       />
                     </motion.div>
                     {isAnalyzing && (
-                      <p className="font-['Poppins'] font-semibold text-center text-lg text-white">
+                      <p className="text-lg text-center text-white font-['Poppins'] font-semibold">
                         Analyzing...
                       </p>
                     )}
                   </div>
                 )}
                 {resultImage && (
-                  <div className="flex-col justify-center w-full">
+                  <div className="w-full flex-col justify-center">
                     {tumourFound ? (
                       <motion.div
                         initial="hidden"
                         animate="visible"
                         transition={{ duration: 1, delay: 1.2 }}
                         variants={animationVariants}
-                        className="flex-col justify-center w-full"
+                        className="w-full flex-col justify-center"
                       >
-                        <div className="flex justify-center pt-6 w-full">
+                        <div className="w-full flex justify-center pt-6">
                           <img
                             src={resultImage}
                             alt="Result Image"
                             className="mb-4 rounded-lg w-[200px]"
                           />
                         </div>
-                        <p className='font-["Poppins"] font-medium text-center text-lg text-white'>
-                          Confidence Scores:{" "}
-                          {confidenceScores
-                            .map(score => `${(score * 100).toFixed(2)}%`)
-                            .join(", ")}
+                        <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
+                          Confidence Scores: {confidenceScores.map(score => `${(score * 100).toFixed(2)}%`).join(", ")}
                         </p>
                       </motion.div>
                     ) : (
-                      <>
-                        <div className="flex justify-center pt-6 w-full">
+                      <
+                      >
+                        <div className="w-full flex justify-center pt-6">
                           <img
                             src={resultImage}
                             alt="Result Image"
                             className="mb-4 rounded-lg w-[200px]"
                           />
-                        </div>
-                        <p className='font-["Poppins"] font-medium text-center text-lg text-white'>
-                          No Brain Tumour Found.
-                        </p>
+                        </div> 
+                      <p className='text-lg font-medium font-["Poppins"] text-center text-white'>
+                        No Brain Tumour Found.
+                      </p>
                       </>
                     )}
                   </div>
