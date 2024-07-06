@@ -14,7 +14,7 @@ const animationVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const serverLink = "https://0106-13-60-94-47.ngrok-free.app";
+const serverLink = "https://9a0e-157-40-89-187.ngrok-free.app";
 
 function Detection() {
   const [selectedImage, setSelectedImage] = useState(null);
